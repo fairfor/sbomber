@@ -128,7 +128,7 @@ void SBomber::CheckBombsAndGround()
     const double y = pGround->GetY();
     for (size_t i = 0; i < vecBombs.size(); i++)
     {
-        if (vecBombs[i]->GetY() >= y) // Ïåðåñå÷åíèå áîìáû ñ çåìëåé
+        if (vecBombs[i]->GetY() >= y) // ÃÃ¥Ã°Ã¥Ã±Ã¥Ã·Ã¥Ã­Ã¨Ã¥ Ã¡Ã®Ã¬Ã¡Ã» Ã± Ã§Ã¥Ã¬Ã«Ã¥Ã©
         {
             pGround->AddCrater(vecBombs[i]->GetX());
             CheckDestoyableObjects(vecBombs[i]);
@@ -366,3 +366,30 @@ void SBomber::DropBomb()
         score -= Bomb::BombCost;
     }
 }
+
+// Homework
+
+class DeleteDynamicObj (DynamicObject* pBomb) {
+    auto it = vecDymanicObj.begin();
+    for (; it != vecDynamicObj.end(); it++) {
+        if (*it == pBomb) {
+            vecDynamicObj.erase(it);
+            break;
+        }
+    }
+}
+
+class DeleteStaticObj (GameObject* pObj) {
+    auto it = vecStaticObj.begin();
+    for (; it != vecStaticObj.end(); it++) {
+        if (*it == pBomb) {
+            vecStaticObj.erase(it);
+            break;
+        }
+    }
+}
+
+class DropBomb (const CoordPlane *Plane, DynamicObj *Bomb, const CountBomb* SBomber){
+public:
+    virtual void execute() = 0;
+};
