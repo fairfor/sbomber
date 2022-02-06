@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <chrono>
-
+#include <optinal>
 
 #include "MyTools.h"
 
@@ -118,6 +118,36 @@ namespace MyTools {
     }
 
     //=============================================================================================
+// HomeWork
 
+    class Logs {
+    public:
+        static Logs& get_instance() {
+            static Logs logs;
+            return logs;
+        }
+
+        std::optinal<WrLogs> write_logs();
+        std::optinal<ClLogs> close_logs();
+
+    private:
+        Logs() {}
+        Logs(const Logs&) = delete;
+        Logs(Logs&&) = delete;
+    };
+
+    std::optinal<WrLogs> Logs::write_logs(Logs::get_instance()) {
+        if (logOut.is_open()) {
+            return logOut << GetCurDateTime() << " - " << str << d << endl;
+        }
+        return std::nullopt;
+    }
+
+    std::optinal<WrLogs> Logs::close_logs() {
+        if (logOut.is_open()) {
+            return logOut.close();
+        }
+        return std::nullopt;
+    }
 
 } // namespace MyTools
