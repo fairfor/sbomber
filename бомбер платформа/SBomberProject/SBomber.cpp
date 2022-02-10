@@ -377,7 +377,7 @@ class DeleteDynamicObj (DynamicObject* pBomb) {
             break;
         }
     }
-}
+};
 
 class DeleteStaticObj (GameObject* pObj) {
     auto it = vecStaticObj.begin();
@@ -387,7 +387,7 @@ class DeleteStaticObj (GameObject* pObj) {
             break;
         }
     }
-}
+};
 
 class DropBomb (const CoordPlane *Plane, DynamicObj *Bomb, const CountBomb* SBomber){
 public:
